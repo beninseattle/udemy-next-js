@@ -2,8 +2,9 @@
 
 import { useFormState } from 'react-dom';
 import { createSnippet } from '@/actions';
+import { NextPage } from 'next';
 
-const SnippetCreatePage: React.FC = () => {
+const SnippetCreatePage: NextPage = () => {
     const [formState, action] = useFormState(createSnippet, { message: '' });
     return (
         <form action={action}>

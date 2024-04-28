@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { db } from "@/db";
+import { NextPage } from "next";
 
-export default async function Home() {
+const HomePage: NextPage = async () => {
   const snippets = await db.snippet.findMany();
   const renderedSnippets = snippets.map(snippet => {
     return (
@@ -25,3 +26,5 @@ export default async function Home() {
     </div>
   );
 }
+
+export default HomePage;

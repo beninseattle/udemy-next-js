@@ -1,4 +1,6 @@
-const SnippetLoadingPage: React.FC = () => {
+import { NextPage } from "next";
+
+const SnippetLoadingPage: NextPage = () => {
     return (
         <h1>Loading!</h1>
     );

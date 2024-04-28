@@ -3,6 +3,7 @@ import Link from "next/link";
 import { db } from "@/db";
 import React from "react"
 import { deleteSnippet } from "@/actions";
+import { NextPage } from "next";
 
 interface SnippetShowPageProps {
     params: {
@@ -10,7 +11,7 @@ interface SnippetShowPageProps {
     }
 }
 
-const SnippetShowPage: React.FC<SnippetShowPageProps> = async ({ params: { id } }) => {
+const SnippetShowPage: NextPage<SnippetShowPageProps> = async ({ params: { id } }) => {
     const snippet = await db.snippet.findFirst({ where: { id: parseInt(id) } });
     if (!snippet) {
         return notFound();
@@ -32,5 +33,11 @@ const SnippetShowPage: React.FC<SnippetShowPageProps> = async ({ params: { id } 
         </div >
     )
 }
+
+export async function generateStaticParams() {
+    const snippets = await db.snippet.findMany();
+
+    return snippets.map(snippet => ({ id: snippet.id.toString() }));
+};
 
 export default SnippetShowPage

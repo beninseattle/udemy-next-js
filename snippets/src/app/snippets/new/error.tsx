@@ -1,10 +1,14 @@
 'use client';
 
+import { NextPage } from "next";
+
 interface ErrorPageProps {
     error: Error;
     reset: () => void;
 }
 
-export default function ErrorPage({ error }: ErrorPageProps) {
+const ErrorPage: NextPage<ErrorPageProps> = ({ error }: ErrorPageProps) => {
     return <div>{error.message}</div>;
 }
+
+export default ErrorPage;
